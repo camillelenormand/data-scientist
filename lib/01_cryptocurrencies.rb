@@ -46,7 +46,7 @@ end
 
 def most_expensive_currency
   max_value = $catalog.select { | key, value | value.to_i < 6000}
-  puts "Most expensive currency is the <6000 list"
+  puts "Most expensive currency in the <6000 list is"
   puts max_value.max_by{
     | key, value | value.to_i < 6000
   }
