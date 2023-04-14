@@ -92,19 +92,24 @@ $menu_options = [
 def display_menu
   system("clear")
   puts "Select an option by entering its number:\n"
+  # Display menu items and add their index as line number
   $menu_options.each_with_index do |option, index|
     puts "#{index + 1}. #{option[:name]}"
   end
   print "\nEnter your choice: "
   choice = gets.chomp.to_i
+  # Add condition based on user choice. If the user's choice is on the menu index range then call the related method.
   if choice > 0 && choice <= 5
     $menu_options[choice - 1][:method].call
+    # Once the method is triggered add a line break option to display menu 
     puts "\nPress enter to go back to menu"
     gets
     display_menu
+    # If the user's choice is to exit menu then call the "exit" method
   elsif choice == 6
     puts "Thanks for using this script."
     exit
+    # If the user's choice is not a menu item then display menu
   else
     puts "Invalid choice. Please try again."
     gets
