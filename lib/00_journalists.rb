@@ -10,7 +10,7 @@ $data_without_at = $data.map{
 #---------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------#
 
-# Combien y a-t-il de handle dans cette array ?
+# Combien y a-t-il de handles dans cette array ?
 def sum
   puts "On a #{$data.size} handles dans cette array."
 end
@@ -26,7 +26,7 @@ end
 
 #---------------------------------------------------------------------------------------#
 
-# Combien y-a-t'il de handle contenant 5 caractères (le @ ne compte pas pour un caractère)
+# Combien y-a-t'il de handle contenant 5 caractères (le @ ne compte pas pour un caractère) ?
 
 def size
 # Select hash with length == 5
@@ -86,6 +86,11 @@ def group_by_size
   puts $data_without_at.group_by(&:length).transform_values(&:count)
 end
 
+def exit_terminal
+  puts "Exiting terminal..."
+  exit
+end
+
 #---------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------#
 
@@ -125,26 +130,33 @@ $menu_options = [
   },
   {
     name: "Exit menu",
+    method: method(:exit_terminal)
   }
 ]
 
 # Define the method to display the menu
 def display_menu
   system("clear")
+  puts " "
+  puts "Launching program... 🚀🚀🚀"
+  puts " "
+  puts "🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦"
+  puts "🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦"
+  puts "🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦 TWITTER EXERCISE 🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦"
+  puts "🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦"
+  puts "🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦🐦"
+  puts " "
   puts "Sélectionnez une des options ci-dessous en tapant le numéro correspondant:\n"
   $menu_options.each_with_index do |option, index|
     puts "#{index + 1}. #{option[:name]}"
   end
   print "\nEnter your choice: "
   choice = gets.chomp.to_i
-  if choice > 0 && choice <= 5
+  if choice > 0 && choice <= $menu_options.length
     $menu_options[choice - 1][:method].call
     puts "\nPress enter to go back to menu"
     gets
     display_menu
-  elsif choice == 6
-    puts "Thanks for using this script."
-    exit
   else
     puts "Invalid choice. Please try again."
     gets
@@ -154,5 +166,4 @@ end
 
 # Call the method to display the menu
 display_menu
-
 

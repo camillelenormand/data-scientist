@@ -9,7 +9,6 @@ $prices = ["6558.07", "468.95", "0.487526", "762.84", "8.86", "85.26", "0.151268
 $catalog = $currencies.zip($prices).to_h
 
 #---------------------------------------------------------------------------------------#
-#---------------------------------------------------------------------------------------#
 
 # Associe chaque devise à son montant pour obtenir un hash du genre :
 def merge_hashes 
@@ -22,7 +21,7 @@ end
 #La ou les crypto qui ont la plus grosse valeur.
 
 def largest_hash_key
-  puts "highest crypto value #{$catalog.max_by {|a,b | b.to_f }}"
+  puts "The highest crypto value is #{$catalog.max_by {|a,b | b.to_f }}"
 end
 
 #---------------------------------------------------------------------------------------#
@@ -30,7 +29,7 @@ end
 #La ou les crypto qui ont la plus petite valeur.
 
 def smallest_hash_key
-  puts "Smallest crypto value #{$catalog.min_by {|a,b | b.to_f }}"
+  puts "The smallest crypto value is #{$catalog.min_by {|a,b | b.to_f }}"
 end
 
 #---------------------------------------------------------------------------------------#
@@ -38,7 +37,7 @@ end
 # Les devises dont le cours est inférieur à 6000
 
 def currencies_lower_than_6000
-  puts "List of currencies: "
+  puts "List of currencies is: "
   puts $catalog.
   select { | key, value | value.to_f < 6000}.sort_by{ | key, value | value.to_f }
 end
@@ -48,18 +47,18 @@ end
 # La devise la plus chère parmi celles dont le cours est supérieur à 6000.
 
 def most_expensive_currency
-  max_value = $catalog.select { | key, value | value.to_f < 6000}.sort_by{ | key, value | value.to_f }
-  puts "Most expensive currency in the < $6000 list is:"
-  puts max_value.max_by {
-    | key, value | value.to_f
-  }
+  max_value = $catalog.
+    select { | key, value | value.to_f < 6000}.sort_by{ | key, value | value.to_f }
+    puts "Most expensive currency in the < $6000 list is:"
+    puts max_value.max_by {
+      | key, value | value.to_f
+    }
 end
 
 def exit_terminal
   puts "Exiting terminal..."
   exit
-  end
-
+end
 
 #---------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------#
@@ -95,39 +94,43 @@ $menu_options = [
 #---------------------------------------------------------------------------------------#
 
 # Define the method to display the menu
-loop do
-  puts "Please choose an option:"
-  puts "1. Merge hashes"
-  puts "2. Largest hash key"
-  puts "3. Smallest hash key"
-  puts "4. Currencies lower than 6000"
-  puts "5. Most expensive currency"
-  puts "6. Exit terminal"
-
+def display_menu
+  system("clear")
+  puts ""
+  puts "Launching program... 🚀🚀🚀"
+  puts ""
+  puts "₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿"
+  puts "₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿"
+  puts "₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿ CRYPTO EXERCISE ₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿"
+  puts "₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿"
+  puts "₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿₿"
+  puts ""
+  puts "Select an option by entering its number:\n"
+  # Display menu items and add their index as line number
+  $menu_options.each_with_index do |option, index|
+    puts "#{index + 1}. #{option[:name]}"
+  end
+  print "\nEnter your choice: "
   choice = gets.chomp.to_i
-
-case choice
-    when 1
-    merge_hashes
-    when 2
-    largest_hash_key
-    when 3
-    smallest_hash_key
-    when 4
-    currencies_lower_than_6000
-    when 5
-    most_expensive_currency
-    when 6
-    exit_terminal
-    else
-    puts "Invalid choice. Please choose again."
+  # Add condition based on user choice. If the user's choice is on the menu index range then call the related method.
+  if choice > 0 && choice <= $menu_options.length
+    $menu_options[choice - 1][:method].call
+    # Once the method is triggered add a line break option to display menu 
+    puts "\nPress enter to go back to menu"
+    gets
+    display_menu
+    # If the user's choice is not a menu item then display menu
+  else
+    puts "Invalid choice. Please try again."
+    gets
+    display_menu
   end
 end
 
 #---------------------------------------------------------------------------------------#
 
 # Call the method to display the menu
-choice
+display_menu
 
 
 
