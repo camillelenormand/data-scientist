@@ -48,10 +48,10 @@ end
 # La devise la plus chère parmi celles dont le cours est supérieur à 6000.
 
 def most_expensive_currency
-  max_value = $catalog.select { | key, value | value.to_f > 6000}.sort_by{ | key, value | value.to_f }
-  puts "Most expensive currency in the > $6000 list is"
+  max_value = $catalog.select { | key, value | value.to_f < 6000}.sort_by{ | key, value | value.to_f }
+  puts "Most expensive currency in the < $6000 list is:"
   puts max_value.max_by {
-    | key, value | value.to_f < 6000
+    | key, value | value.to_f
   }
 
 end
