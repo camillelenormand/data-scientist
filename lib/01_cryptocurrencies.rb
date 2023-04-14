@@ -105,10 +105,12 @@ def display_menu
     puts "\nPress enter to go back to menu"
     gets
     display_menu
-    # If the user's choice is to exit menu then call the "exit" method
+
+    # If the user's choice is to exit the menu then call the "exit" method
   elsif choice == 6
     puts "Thanks for using this script."
     exit
+
     # If the user's choice is not a menu item then display menu
   else
     puts "Invalid choice. Please try again."
