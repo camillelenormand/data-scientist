@@ -83,7 +83,6 @@ $menu_options = [
   },
   {
     name: "Exit",
-    method: method(:exit)
   }
 ]
 
