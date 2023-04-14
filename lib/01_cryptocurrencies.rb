@@ -99,7 +99,7 @@ def display_menu
   choice = gets.chomp.to_i
   if choice > 0 && choice <= 5
     $menu_options[choice - 1][:method].call
-    puts "\nPress enter to continue..."
+    puts "\nPress enter to go back to menu"
     gets
     display_menu
   elsif choice == 6
