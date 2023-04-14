@@ -53,8 +53,8 @@ def most_expensive_currency
   puts max_value.max_by {
     | key, value | value.to_f
   }
-
 end
+
 
 #---------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------#
@@ -80,6 +80,10 @@ $menu_options = [
   {
     name: "Get the most expensive currency",
     method: method(:most_expensive_currency)
+  },
+  {
+    name: "Exit",
+    method: method(:exit)
   }
 ]
 
@@ -94,11 +98,14 @@ def display_menu
   end
   print "\nEnter your choice: "
   choice = gets.chomp.to_i
-  if choice > 0 && choice <= $menu_options.length
+  if choice > 0 && choice <= 5
     $menu_options[choice - 1][:method].call
     puts "\nPress enter to continue..."
     gets
     display_menu
+  elsif choice == 6
+    puts "Thanks for using this script."
+    exit
   else
     puts "Invalid choice. Please try again."
     gets
