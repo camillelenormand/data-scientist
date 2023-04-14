@@ -122,6 +122,9 @@ $menu_options = [
   {
     name: "Sors-moi une répartition des handle par taille.",
     method: method(:group_by_size)
+  },
+  {
+    name: "Exit menu",
   }
 ]
 
@@ -134,11 +137,14 @@ def display_menu
   end
   print "\nEnter your choice: "
   choice = gets.chomp.to_i
-  if choice > 0 && choice <= $menu_options.length
+  if choice > 0 && choice <= 5
     $menu_options[choice - 1][:method].call
-    puts "\nPress enter to continue..."
+    puts "\nPress enter to go back to menu"
     gets
     display_menu
+  elsif choice == 6
+    puts "Thanks for using this script."
+    exit
   else
     puts "Invalid choice. Please try again."
     gets
