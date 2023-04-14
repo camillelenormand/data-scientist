@@ -52,7 +52,7 @@ end
 
 # Use sort to display elements alphabetically
 def sort
-  puts "Voici la liste des handles triés par ordre alphabétique: #{$data.sort}."
+  puts "Voici la liste des handles triés par ordre alphabétique: #{$data_without_at.sort}."
 end
 
 #---------------------------------------------------------------------------------------#
