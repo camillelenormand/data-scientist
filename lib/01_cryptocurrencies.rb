@@ -55,6 +55,11 @@ def most_expensive_currency
   }
 end
 
+def exit_terminal
+  puts "Exiting terminal..."
+  exit
+  end
+
 
 #---------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------#
@@ -83,46 +88,46 @@ $menu_options = [
   },
   {
     name: "Exit menu",
+    method: method(:exit_terminal)
   }
 ]
 
 #---------------------------------------------------------------------------------------#
 
 # Define the method to display the menu
-def display_menu
-  system("clear")
-  puts "Select an option by entering its number:\n"
-  # Display menu items and add their index as line number
-  $menu_options.each_with_index do |option, index|
-    puts "#{index + 1}. #{option[:name]}"
-  end
-  print "\nEnter your choice: "
+loop do
+  puts "Please choose an option:"
+  puts "1. Merge hashes"
+  puts "2. Largest hash key"
+  puts "3. Smallest hash key"
+  puts "4. Currencies lower than 6000"
+  puts "5. Most expensive currency"
+  puts "6. Exit terminal"
+
   choice = gets.chomp.to_i
-  # Add condition based on user choice. If the user's choice is on the menu index range then call the related method.
-  if choice > 0 && choice <= 5
-    $menu_options[choice - 1][:method].call
-    # Once the method is triggered add a line break option to display menu 
-    puts "\nPress enter to go back to menu"
-    gets
-    display_menu
 
-    # If the user's choice is to exit the menu then call the "exit" method
-  elsif choice == 6
-    puts "Thanks for using this script."
-    exit
-
-    # If the user's choice is not a menu item then display menu
-  else
-    puts "Invalid choice. Please try again."
-    gets
-    display_menu
+case choice
+    when 1
+    merge_hashes
+    when 2
+    largest_hash_key
+    when 3
+    smallest_hash_key
+    when 4
+    currencies_lower_than_6000
+    when 5
+    most_expensive_currency
+    when 6
+    exit_terminal
+    else
+    puts "Invalid choice. Please choose again."
   end
 end
 
 #---------------------------------------------------------------------------------------#
 
 # Call the method to display the menu
-display_menu
+choice
 
 
 
