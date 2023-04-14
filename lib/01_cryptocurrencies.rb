@@ -82,7 +82,7 @@ $menu_options = [
     method: method(:most_expensive_currency)
   },
   {
-    name: "Exit",
+    name: "Exit menu",
   }
 ]
 
